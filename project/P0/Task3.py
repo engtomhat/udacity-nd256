@@ -50,7 +50,7 @@ def isFixedLine(phone):
   return phone[0] == "("
 
 def isMobileNumber(phone):
-  return phone[0] in (7,8,9)
+  return phone[0] in ("7","8","9")
 
 def getAreaCode(phone):
   area_code = ""
@@ -61,12 +61,7 @@ def getAreaCode(phone):
   return area_code
 
 def getMobilePrefix(phone):
-  prefix = ""
-  i = 0
-  while phone[i] != " ":
-    prefix += phone[i]
-    i += 1
-  return prefix
+  return phone[:4]
 
 def partA():
   codes = set()
@@ -76,7 +71,7 @@ def partA():
       receiver = call[1]
       if isFixedLine(receiver):
         codes.add(getAreaCode(receiver))
-      if isMobileNumber(receiver):
+      elif isMobileNumber(receiver):
         codes.add(getMobilePrefix(receiver))
 
   print("The numbers called by people in Bangalore have codes:")
